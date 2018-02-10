@@ -1,38 +1,27 @@
-<?
-	session_start(); 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Exo Ntier</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>Connexion</h1>
+		<form action="" method="post">
+			<div class="form-group">
+				<label for="email">L'email </label>
+				<input class='form-control' type="email" name="email" />
+			</div>
+			<div class="form-group">
+				<label for="password">Le mot de passe </label>
 
-	if(isset($_POST['submit'])){ 
-		$mail = $_POST['email'];
-		$password = $_POST['pwd'];
+		 		<input class='form-control'  type="password" name="pwd" />
 
-		 $user = 'root';
-		 $pass = '';
-		 $your_db = 'bdd-library';
-		try {
+			</div>
+		 	<input class='btn btn-primary' type="submit" value="OK" name="submit"></p>
+		</form>	
+	</div>
 
-		 	$db = new PDO('mysql:host=localhost;dbname='.$your_db.';charset=UTF8', $user, $pass);
-
-		    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-		 }
-		catch( PDOException $e) {
-
-		    echo 'Échec lors de la connexion : ' . $e->getMessage();
-		}
-
-
-		$statement=$db->prepare("SELECT nom , prenom FROM auteur  where  email ='".$mail."' AND password='".$password."' ");
-		$statement->execute();
-		$results=$statement->fetchAll(PDO::FETCH_ASSOC);
-		
-		$_SESSION['user']= $results[0]['nom'] . ' ' . $results[0]['prenom'];
-		
-	 	header('Location: /dashboard/app-ex-mvc-V2/lister.traitement.php');
-
-	}
-?>
-	<form action="" method="post">
-	 <p>L'email : <input type="email" name="email" /></p>
-	 <p>Le mot de passe : <input type="password" name="pwd" /></p>
-	 <p><input type="submit" value="OK" name="submit"></p>
-	</form>
+</body>
+</html>
